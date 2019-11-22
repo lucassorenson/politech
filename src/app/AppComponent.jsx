@@ -2,14 +2,17 @@ import React from 'react';
 //import shortid from 'shortid'
 
 function AppComponent({
+  searchValue,
   gifId,
   gifUrl,
   loading,
-  onFetchGif
+  onFetchGif,
+  updateSearchValue
 }) {
   if (loading) {
     return <div>Loading...</div>
   }
+
 
   return (
     <div>
@@ -23,7 +26,8 @@ function AppComponent({
         </p>
       </div>
       <div id="search">
-        <button onClick={onFetchGif}>Get GIF</button>
+        <input onChange={(e) => updateSearchValue(e.target.value)}></input>
+        <button onClick={() => onFetchGif(searchValue)}>Get GIF</button>
       </div>
       <div id="current-gif">
     

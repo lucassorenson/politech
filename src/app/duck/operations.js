@@ -1,9 +1,8 @@
-import Creators from './actions'
+import Creators from './actions';
 
-const searchForGif = Creators.searchForGif
-const receiveGif = Creators.receiveGif
-
-
+const searchForGif = Creators.searchForGif;
+const receiveGif = Creators.receiveGif;
+const updateSearchValue = Creators.updateSearchValue;
 
 const fetchGif = (searchTerm) => {
     return dispatch => {
@@ -22,4 +21,7 @@ const fetchGif = (searchTerm) => {
     }
 };
 
-export default { fetchGif }
+export default { 
+    fetchGif,
+    updateSearchValue
+}
