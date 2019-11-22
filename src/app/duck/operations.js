@@ -9,10 +9,10 @@ const fetchGif = (searchTerm) => {
     return dispatch => {
 
         dispatch(searchForGif(searchTerm));
-        return fetch(`https://api.giphy.com/v1/gifs/search?api_key=bHUH8hr9b0iIOx1ZrFFCK4vuWgpxaKEf&q=${searchTerm}&limit=1`)
+        return fetch(`https://api.giphy.com/v1/gifs/translate?api_key=bHUH8hr9b0iIOx1ZrFFCK4vuWgpxaKEf&s=${searchTerm}`)
             .then(response => response.json())
             .then(json => {
-                const result = json.data[0]
+                const result = json.data
 
                 if (!result) {
                     const noGif = {

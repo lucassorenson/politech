@@ -37,10 +37,11 @@ const appReducer = (state=INITIAL_STATE, action) => {
         }
 
         case Types.LIKE_GIF: {
-            const { gifId } = action;
+            const { gifId, gifUrl } = action;
+            console.log(state.likedGifs)
             return {
                 ...state,
-                likedGifs: [...state.likedGifs, gifId]
+                likedGifs: [...state.likedGifs, {gifId: gifId, gifUrl: gifUrl}]
             }
         }
 

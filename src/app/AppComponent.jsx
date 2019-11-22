@@ -4,6 +4,8 @@ import { Spinner } from 'react-bootstrap'
 function AppComponent({
   searchValue,
   updateSearchValue,
+  likedGifs,
+  likeGif,
   gifId,
   gifUrl,
   loading,
@@ -39,15 +41,16 @@ function AppComponent({
       <div id="current-gif">
         {currentGif}
       </div>
-      {/*<div id="liked-gifs">
+      <div id="liked-gifs">
+        <button onClick={() => likeGif({gifId, gifUrl})} style={gifUrl ? null : {visibility: 'hidden'}}>Like</button>
         <ul>
-          {likedGifs.map((gif, index) => (
+          {/*likedGifs.map((gif, index) => (
             <li key={gif.gifId}>
               <img src={gif.gifSrc} alt='There is no GIF here'></img>
             </li>
-          ))}
+          ))*/}
         </ul>
-      </div>*/}
+      </div>
     </div>
   );
 }
