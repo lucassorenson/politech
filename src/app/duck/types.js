@@ -1,0 +1,7 @@
+const SEARCH_FOR_GIF = 'SEARCH_FOR_GIF';
+const RECEIVE_GIF = 'RECEIVE_GIF';
+
+export default {
+    SEARCH_FOR_GIF,
+    RECEIVE_GIF
+}
