@@ -4,12 +4,13 @@ const searchForGif = Creators.searchForGif;
 const receiveGif = Creators.receiveGif;
 const updateSearchValue = Creators.updateSearchValue;
 const likeGif = Creators.likeGif;
+const changeWeirdness = Creators.changeWeirdness
 
-const fetchGif = (searchTerm) => {
+const fetchGif = (searchTerm, weirdness) => {
     return dispatch => {
 
         dispatch(searchForGif(searchTerm));
-        return fetch(`https://api.giphy.com/v1/gifs/translate?api_key=bHUH8hr9b0iIOx1ZrFFCK4vuWgpxaKEf&s=${searchTerm}`)
+        return fetch(`https://api.giphy.com/v1/gifs/translate?api_key=bHUH8hr9b0iIOx1ZrFFCK4vuWgpxaKEf&s=${searchTerm}&weirdness=${weirdness}`)
             .then(response => response.json())
             .then(json => {
                 const result = json.data
@@ -34,5 +35,6 @@ const fetchGif = (searchTerm) => {
 export default {
     fetchGif,
     updateSearchValue,
-    likeGif
+    likeGif,
+    changeWeirdness
 }

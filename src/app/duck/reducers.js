@@ -3,7 +3,8 @@ import { default as Types } from './types'
 const INITIAL_STATE = {
     loading: false,
     searchValue: '',
-    likedGifs: []
+    weirdness: 1,
+    likedGifs: [],
 }
 
 const appReducer = (state=INITIAL_STATE, action) => {
@@ -33,6 +34,15 @@ const appReducer = (state=INITIAL_STATE, action) => {
                 gifId, 
                 gifUrl,
                 loading: false
+            }
+        }
+
+        case Types.CHANGE_WEIRDNESS: {
+            console.log(action)
+            const { weirdness } = action;
+            return {
+                ...state,
+                weirdness
             }
         }
 
