@@ -1,0 +1,59 @@
+h1 {
+    font-size: 1.5em
+}
+
+img {
+    max-width: 300px;
+}
+
+#header-section {
+    width: 100%;
+    background-color: lightgray;
+    box-shadow: 0px 3px 0 gray;
+    padding: 15px;
+}
+
+#search-section {
+    width: 55%;
+    border: 1px gray solid;
+    padding: 20px;
+    margin: 0px;
+    float: left;
+}
+
+#current-section {
+    width: 55%;
+    border: 1px gray solid;
+    text-align: center;
+    padding: 20px;
+    margin: 0px;
+    float: left;
+    height: 437px
+}
+
+#liked-section {
+    width: 45%;
+    border: 1px gray solid;
+    height: 597px;
+    float: right;
+    text-align: center;
+    margin-top: -160px;
+    padding: 20px;
+}
+
+#liked-section ul {
+    list-style-type: none;
+    padding-left: 0px;
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: baseline
+}
+
+#liked-section li {
+    margin: 5px 0
+}
+
+#liked-section img {
+    max-width: 200px;
+}

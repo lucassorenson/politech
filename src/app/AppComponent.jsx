@@ -16,7 +16,7 @@ function AppComponent({
 
   let currentGif = function () {
     if (!gifUrl) {
-      return <h2>Please search for a GIF</h2>
+      return <img src="https://via.placeholder.com/300/808080/000000?text=Please search for a GIF" alt=""></img>
     } else if (loading) {
       return (<Spinner animation="border" role="status"><span className="sr-only">Loading...</span></Spinner>)
     } else if (gifUrl) {
@@ -26,9 +26,11 @@ function AppComponent({
 
   return (
     <div>
-      <h1>Weirdness Calculator</h1>
+      <section id='header-section'>
+        <h1>Weirdness Calculator</h1>
+      </section>
 
-      <section>
+      <section id='search-section'>
         <div id="intro">
           <p>Find out how weird you are by selecting the GIFs that make you laugh.
             We'll show you the least weird ones to start, but you can move the slider to make them weirder.
@@ -43,16 +45,23 @@ function AppComponent({
         </div>
       </section>
 
-      <section>
+
+      <section id="current-section">
         <div id="current-gif">
           {currentGif}
         </div>
-        <div id="slider">
-          <label htmlFor="weirdness-slider">Weirdness: {weirdness}</label>
-          <input type="range" value={weirdness} onInput={(e) => {changeWeirdness(e.target.value)}} className="custom-range" id="weirdness-slider" min="1" max="10"></input> {/*add onChange*/}
-        </div>
+
+
+        <label htmlFor="weirdness-slider">Weirdness: {weirdness}</label>
+        <input type="range" value={weirdness} onChange={(e) => { changeWeirdness(e.target.value) }} className="custom-range" id="weirdness-slider" min="1" max="10"></input> {/*add onChange*/}
+
+        <button onClick={() => likeGif({ gifId, gifUrl })} style={gifUrl ? null : { visibility: 'hidden' }}>Like</button>
+      </section>
+
+
+      <section id="liked-section">
+        <h2>Your Liked GIFs</h2>
         <div id="liked-gifs">
-          <button onClick={() => likeGif({ gifId, gifUrl })} style={gifUrl ? null : { visibility: 'hidden' }}>Like</button>
           <ul>
             {likedGifs.map((gif, index) => (
               <li key={gif.gifId}>

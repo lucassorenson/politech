@@ -9,6 +9,7 @@ import { App } from './app';
 import rootReducer from './reducers'
 
 import 'bootstrap/dist/css/bootstrap.css'
+import './app/app.css'
 
 const middleware = applyMiddleware(thunk, logger);
 const store = createStore(rootReducer, middleware)
