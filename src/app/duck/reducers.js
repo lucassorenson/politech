@@ -2,7 +2,8 @@ import { default as Types } from './types'
 
 const INITIAL_STATE = {
     loading: false,
-    searchValue: ''
+    searchValue: '',
+    likedGifs: []
 }
 
 const appReducer = (state=INITIAL_STATE, action) => {
@@ -17,7 +18,6 @@ const appReducer = (state=INITIAL_STATE, action) => {
         }
 
         case Types.SEARCH_FOR_GIF: {
-            console.log(action.searchTerm)
             const { searchTerm } = action;
             return {
                 ...state,
@@ -33,6 +33,14 @@ const appReducer = (state=INITIAL_STATE, action) => {
                 gifId, 
                 gifUrl,
                 loading: false
+            }
+        }
+
+        case Types.LIKE_GIF: {
+            const { gifId } = action;
+            return {
+                ...state,
+                likedGifs: [...state.likedGifs, gifId]
             }
         }
 

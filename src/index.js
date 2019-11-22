@@ -8,6 +8,8 @@ import { Provider } from 'react-redux'
 import { App } from './app';
 import rootReducer from './reducers'
 
+import 'bootstrap/dist/css/bootstrap.css'
+
 const middleware = applyMiddleware(thunk, logger);
 const store = createStore(rootReducer, middleware)
 

@@ -16,10 +16,16 @@ const receiveGif = (gifData) => ({
         gifId: gifData.gifId,
         gifUrl: gifData.gifUrl
     }
+});
+
+const likeGif = (gifId) => ({
+    type: types.LIKE_GIF,
+    gifId: gifId
 })
 
 export default { 
     searchForGif,
     receiveGif,
-    updateSearchValue
+    updateSearchValue,
+    likeGif
  }

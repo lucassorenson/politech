@@ -1,26 +1,33 @@
 import React from 'react';
-//import shortid from 'shortid'
+import { Spinner } from 'react-bootstrap'
 
 function AppComponent({
   searchValue,
+  updateSearchValue,
   gifId,
   gifUrl,
   loading,
-  onFetchGif,
-  updateSearchValue
+  onFetchGif
 }) {
-  if (loading) {
-    return <div>Loading...</div>
-  }
 
+  let currentGif = function() {
+    if(!gifUrl) {
+      return <h2>Please search for a GIF</h2>
+    } else if (loading) {
+      return (<Spinner animation="border" role="status"><span className="sr-only">Loading...</span></Spinner>)
+    } else if (gifUrl) {
+      return <img id={gifId} src={gifUrl} alt=''></img>
+    }
+  }()
 
   return (
     <div>
       <h1>Weirdness Calculator</h1>
+      
       <div id="intro">
         <p>Find out how weird you are by selecting the GIFs that make you laugh.
           We'll show you the least weird ones to start, but you can move the slider to make them weirder.
-          
+
           When you find a GIF you like, press the Like button. 
           Once you like 5 GIFs, we'll show you how weird you are.
         </p>
@@ -30,8 +37,7 @@ function AppComponent({
         <button onClick={() => onFetchGif(searchValue)}>Get GIF</button>
       </div>
       <div id="current-gif">
-    
-        <img src={gifUrl} id={gifId} alt="There is no GIF here"></img>
+        {currentGif}
       </div>
       {/*<div id="liked-gifs">
         <ul>
