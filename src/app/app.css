@@ -4,6 +4,7 @@ h1 {
 
 img {
     max-width: 300px;
+    max-height: 300px;
 }
 
 #header-section {
@@ -34,17 +35,20 @@ img {
     height: 65vh;
 }
 
-#liked-section {
+#liked-section-home {
     width: 45%;
-    border: 1px gray solid;
     height: 90vh;
     float: right;
-    text-align: center;
     margin-top: -25vh;
+}
+
+.liked-section {
+    border: 1px gray solid;
+    text-align: center;
     padding: 20px;
 }
 
-#liked-section ul {
+.liked-section ul {
     list-style-type: none;
     padding-left: 0px;
     display: flex; 
@@ -53,10 +57,11 @@ img {
     align-items: baseline
 }
 
-#liked-section li {
+.liked-section li {
     margin: 5px 0
 }
 
-#liked-section img {
+.liked-section img {
     max-width: 150px;
+    max-height: 150px;
 }
