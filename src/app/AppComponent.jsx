@@ -11,7 +11,8 @@ function AppComponent({
   gifId,
   gifUrl,
   loading,
-  onFetchGif
+  onFetchGif,
+  calculateWeirdness
 }) {
 
   let currentGif = function () {
@@ -22,6 +23,14 @@ function AppComponent({
     } else if (gifUrl) {
       return <img id={gifId} src={gifUrl} alt=''></img>
     }
+  }()
+
+  let isLikeButtonHidden = function () {
+    return !gifUrl || likedGifs.length >= 5 || likedGifs.filter(gif => gif.gifId === gifId).length > 0
+  }()
+
+  let isCalculateButtonHidden = function () {
+    return likedGifs.length < 5
   }()
 
   return (
@@ -52,7 +61,7 @@ function AppComponent({
         <label htmlFor="weirdness-slider">Weirdness: {weirdness}</label>
         <input type="range" value={weirdness} onChange={(e) => { changeWeirdness(e.target.value) }} className="custom-range" id="weirdness-slider" min="1" max="10"></input> {/*add onChange*/}
 
-        <button onClick={() => likeGif({ gifId, gifUrl, weirdness })} style={ (!gifUrl || likedGifs.length >= 5) || likedGifs.filter(gif => gif.gifId === gifId).length > 0 ? { visibility: 'hidden' } : null }>Like</button>
+        <button onClick={() => likeGif({ gifId, gifUrl, weirdness })} style={isLikeButtonHidden ? { visibility: 'hidden' } : null}>Like</button>
       </section>
 
 
@@ -67,6 +76,7 @@ function AppComponent({
             ))}
           </ul>
         </div>
+        <button onClick={() => calculateWeirdness(likedGifs)} style={isCalculateButtonHidden ? { visibility: 'hidden' } : null}>Calculate Weirdness</button>
       </section>
 
     </div>

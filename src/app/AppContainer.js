@@ -3,6 +3,8 @@ import AppComponent from './AppComponent';
 
 import { appOperations } from './duck';
 
+
+
 const mapStateToProps = (state) => {
     const { searchValue, weirdness, likedGifs, gifId, gifUrl, loading } = state.app;
     return {
@@ -20,11 +22,13 @@ const mapDispatchToProps = (dispatch) => {
   const onFetchGif = (currentValue, weirdness) => dispatch(appOperations.fetchGif(currentValue, weirdness))
   const changeWeirdness = (weirdness) => dispatch(appOperations.changeWeirdness(weirdness))
   const likeGif = ({gifId, gifUrl, weirdness}) => dispatch(appOperations.likeGif({gifId, gifUrl, weirdness}))
+  const calculateWeirdness = (likedGifs) => dispatch(appOperations.calculateWeirdness(likedGifs))
   return { 
     onFetchGif,
     updateSearchValue,
     changeWeirdness,
-    likeGif
+    likeGif,
+    calculateWeirdness
   }
 };
 

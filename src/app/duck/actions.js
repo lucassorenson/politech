@@ -20,7 +20,7 @@ const receiveGif = (gifData) => ({
 
 const changeWeirdness = (weirdness) => ({
     type: types.CHANGE_WEIRDNESS,
-    weirdness: weirdness
+    weirdness: parseInt(weirdness)
 })
 
 const likeGif = ({gifId, gifUrl, weirdness}) => ({
@@ -30,10 +30,16 @@ const likeGif = ({gifId, gifUrl, weirdness}) => ({
     weirdness: weirdness
 })
 
+const calculateWeirdness = (likedGifs) => ({
+    type: types.CALCULATE_WEIRDNESS,
+    likedGifs: likedGifs
+})
+
 export default { 
     searchForGif,
     receiveGif,
     updateSearchValue,
     changeWeirdness,
-    likeGif
+    likeGif,
+    calculateWeirdness
  }

@@ -41,7 +41,7 @@ const appReducer = (state=INITIAL_STATE, action) => {
             const { weirdness } = action;
             return {
                 ...state,
-                weirdness
+                weirdness: weirdness
             }
         }
 
@@ -50,6 +50,14 @@ const appReducer = (state=INITIAL_STATE, action) => {
             return {
                 ...state,
                 likedGifs: [...state.likedGifs, {gifId: gifId, gifUrl: gifUrl, weirdness: weirdness}]
+            }
+        }
+
+        case Types.CALCULATE_WEIRDNESS: {
+            const { likedGifs } = action;
+            return {
+                ...state,
+                totalWeirdnessScore: likedGifs.map(gif => gif.weirdness).reduce((sum, num) => sum + num) / likedGifs.length
             }
         }
 
