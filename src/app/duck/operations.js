@@ -16,16 +16,18 @@ const fetchGif = (searchTerm, weirdness) => {
             .then(json => {
                 const result = json.data
 
-                if (!result) {
+                if (!result.images) {
                     const noGif = {
                         gifId: 'NoGif',
-                        gifUrl: 'https://media1.giphy.com/media/l0Iy2hYDgmCjMufzq/giphy.gif?cid=332fceaaaeabdee5b682254ade5b04fdedecf45633207ff1&rid=giphy.gif'
+                        gifUrl: 'https://media1.giphy.com/media/l0Iy2hYDgmCjMufzq/giphy.gif?cid=332fceaaaeabdee5b682254ade5b04fdedecf45633207ff1&rid=giphy.gif',
+                        gifTitle: 'No Gif'
                     }
                     dispatch(receiveGif(noGif))
                 } else {
                     const data = {
                         gifId: result.id,
-                        gifUrl: result.images.downsized_large.url
+                        gifUrl: result.images.downsized_large.url,
+                        gifTitle: result.title.length > 0 ? result.title : 'No Title Available'
                     }
                     dispatch(receiveGif(data))
                 }
