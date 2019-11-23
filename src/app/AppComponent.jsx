@@ -55,7 +55,7 @@ function AppComponent({
         <label htmlFor="weirdness-slider">Weirdness: {weirdness}</label>
         <input type="range" value={weirdness} onChange={(e) => { changeWeirdness(e.target.value) }} className="custom-range" id="weirdness-slider" min="1" max="10"></input> {/*add onChange*/}
 
-        <button onClick={() => likeGif({ gifId, gifUrl })} style={gifUrl ? null : { visibility: 'hidden' }}>Like</button>
+        <button onClick={() => likeGif({ gifId, gifUrl })} style={ (!gifUrl || likedGifs.length >= 5) ? { visibility: 'hidden' } : null }>Like</button>
       </section>
 
 
