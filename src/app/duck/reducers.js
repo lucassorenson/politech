@@ -38,7 +38,6 @@ const appReducer = (state=INITIAL_STATE, action) => {
         }
 
         case Types.CHANGE_WEIRDNESS: {
-            console.log(action)
             const { weirdness } = action;
             return {
                 ...state,
@@ -47,11 +46,10 @@ const appReducer = (state=INITIAL_STATE, action) => {
         }
 
         case Types.LIKE_GIF: {
-            const { gifId, gifUrl } = action;
-            console.log(state.likedGifs)
+            const { gifId, gifUrl, weirdness } = action;
             return {
                 ...state,
-                likedGifs: [...state.likedGifs, {gifId: gifId, gifUrl: gifUrl}]
+                likedGifs: [...state.likedGifs, {gifId: gifId, gifUrl: gifUrl, weirdness: weirdness}]
             }
         }
 

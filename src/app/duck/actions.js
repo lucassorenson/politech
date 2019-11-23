@@ -23,10 +23,11 @@ const changeWeirdness = (weirdness) => ({
     weirdness: weirdness
 })
 
-const likeGif = ({gifId, gifUrl}) => ({
+const likeGif = ({gifId, gifUrl, weirdness}) => ({
     type: types.LIKE_GIF,
     gifId: gifId,
-    gifUrl: gifUrl
+    gifUrl: gifUrl,
+    weirdness: weirdness
 })
 
 export default { 

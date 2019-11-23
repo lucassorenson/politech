@@ -47,15 +47,12 @@ function AppComponent({
 
 
       <section id="current-section">
-        <div id="current-gif">
-          {currentGif}
-        </div>
-
+        <div>{currentGif}</div>
 
         <label htmlFor="weirdness-slider">Weirdness: {weirdness}</label>
         <input type="range" value={weirdness} onChange={(e) => { changeWeirdness(e.target.value) }} className="custom-range" id="weirdness-slider" min="1" max="10"></input> {/*add onChange*/}
 
-        <button onClick={() => likeGif({ gifId, gifUrl })} style={ (!gifUrl || likedGifs.length >= 5) ? { visibility: 'hidden' } : null }>Like</button>
+        <button onClick={() => likeGif({ gifId, gifUrl, weirdness })} style={ (!gifUrl || likedGifs.length >= 5) || likedGifs.filter(gif => gif.gifId === gifId).length > 0 ? { visibility: 'hidden' } : null }>Like</button>
       </section>
 
 
