@@ -37,11 +37,16 @@ const calculateWeirdness = (likedGifs) => ({
     likedGifs: likedGifs
 })
 
+const startOver = () => ({
+    type: types.START_OVER
+})
+
 export default { 
     searchForGif,
     receiveGif,
     updateSearchValue,
     changeWeirdness,
     likeGif,
-    calculateWeirdness
+    calculateWeirdness,
+    startOver
  }

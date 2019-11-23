@@ -4,8 +4,9 @@ const searchForGif = Creators.searchForGif;
 const receiveGif = Creators.receiveGif;
 const updateSearchValue = Creators.updateSearchValue;
 const likeGif = Creators.likeGif;
-const changeWeirdness = Creators.changeWeirdness
-const calculateWeirdness = Creators.calculateWeirdness
+const changeWeirdness = Creators.changeWeirdness;
+const calculateWeirdness = Creators.calculateWeirdness;
+const startOver = Creators.startOver;
 
 const fetchGif = (searchTerm, weirdness) => {
     return dispatch => {
@@ -40,5 +41,6 @@ export default {
     updateSearchValue,
     likeGif,
     changeWeirdness,
-    calculateWeirdness
+    calculateWeirdness,
+    startOver
 }

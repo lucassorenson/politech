@@ -14,7 +14,8 @@ function AppComponent({
   loading,
   onFetchGif,
   calculateWeirdness,
-  totalWeirdnessScore
+  totalWeirdnessScore,
+  startOver
 }) {
 
   let currentGif = function () {
@@ -96,6 +97,10 @@ function AppComponent({
           </li>
         ))}
       </ul>
+    </section>
+
+    <section>
+      <button onClick={startOver}>Start Over</button>
     </section>
   </div>
 

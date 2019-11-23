@@ -61,6 +61,9 @@ const appReducer = (state=INITIAL_STATE, action) => {
                 totalWeirdnessScore: likedGifs.map(gif => gif.weirdness).reduce((sum, num) => sum + num) / likedGifs.length
             }
         }
+        case Types.START_OVER: {
+            return { ...INITIAL_STATE }
+        }
 
         default: return state;
     }
