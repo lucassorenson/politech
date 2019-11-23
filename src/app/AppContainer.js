@@ -6,14 +6,16 @@ import { appOperations } from './duck';
 
 
 const mapStateToProps = (state) => {
-    const { searchValue, weirdness, likedGifs, gifId, gifUrl, loading } = state.app;
+    const { searchValue, weirdness, likedGifs, gifId, gifUrl, gifTitle, loading, totalWeirdnessScore } = state.app;
     return {
         searchValue,
         weirdness,
         likedGifs,
         gifId,
         gifUrl,
-        loading
+        gifTitle,
+        loading,
+        totalWeirdnessScore
     }
 };
 
@@ -21,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
   const updateSearchValue = (value) => dispatch(appOperations.updateSearchValue(value))
   const onFetchGif = (currentValue, weirdness) => dispatch(appOperations.fetchGif(currentValue, weirdness))
   const changeWeirdness = (weirdness) => dispatch(appOperations.changeWeirdness(weirdness))
-  const likeGif = ({gifId, gifUrl, weirdness}) => dispatch(appOperations.likeGif({gifId, gifUrl, weirdness}))
+  const likeGif = ({gifId, gifUrl, gifTitle, weirdness}) => dispatch(appOperations.likeGif({gifId, gifUrl, gifTitle, weirdness}))
   const calculateWeirdness = (likedGifs) => dispatch(appOperations.calculateWeirdness(likedGifs))
   return { 
     onFetchGif,

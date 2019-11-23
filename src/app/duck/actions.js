@@ -14,7 +14,8 @@ const receiveGif = (gifData) => ({
     type: types.RECEIVE_GIF,
     gifData: {
         gifId: gifData.gifId,
-        gifUrl: gifData.gifUrl
+        gifUrl: gifData.gifUrl,
+        gifTitle: gifData.gifTitle
     }
 });
 
@@ -23,10 +24,11 @@ const changeWeirdness = (weirdness) => ({
     weirdness: parseInt(weirdness)
 })
 
-const likeGif = ({gifId, gifUrl, weirdness}) => ({
+const likeGif = ({gifId, gifUrl, gifTitle, weirdness}) => ({
     type: types.LIKE_GIF,
     gifId: gifId,
     gifUrl: gifUrl,
+    gifTitle: gifTitle,
     weirdness: weirdness
 })
 

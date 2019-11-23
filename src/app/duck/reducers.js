@@ -28,11 +28,12 @@ const appReducer = (state=INITIAL_STATE, action) => {
         }
 
         case Types.RECEIVE_GIF: {
-            const { gifId, gifUrl } = action.gifData;
+            const { gifId, gifUrl, gifTitle } = action.gifData;
             return {
                 ...state,
                 gifId, 
                 gifUrl,
+                gifTitle,
                 loading: false
             }
         }
@@ -46,10 +47,10 @@ const appReducer = (state=INITIAL_STATE, action) => {
         }
 
         case Types.LIKE_GIF: {
-            const { gifId, gifUrl, weirdness } = action;
+            const { gifId, gifUrl, gifTitle, weirdness } = action;
             return {
                 ...state,
-                likedGifs: [...state.likedGifs, {gifId: gifId, gifUrl: gifUrl, weirdness: weirdness}]
+                likedGifs: [...state.likedGifs, {gifId: gifId, gifUrl: gifUrl, gifTitle: gifTitle, weirdness: weirdness}]
             }
         }
 

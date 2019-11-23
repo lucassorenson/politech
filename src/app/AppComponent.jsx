@@ -10,9 +10,11 @@ function AppComponent({
   likeGif,
   gifId,
   gifUrl,
+  gifTitle,
   loading,
   onFetchGif,
-  calculateWeirdness
+  calculateWeirdness,
+  totalWeirdnessScore
 }) {
 
   let currentGif = function () {
@@ -33,53 +35,79 @@ function AppComponent({
     return likedGifs.length < 5
   }()
 
+  const homePage = (<div>
+
+    <section id='search-section'>
+      <div id="intro">
+        <p>Find out how weird you are by selecting the GIFs that make you laugh.
+          We'll show you the least weird ones to start, but you can move the slider to make them weirder.
+
+          When you find a GIF you like, press the Like button.
+          Once you like 5 GIFs, we'll show you how weird you are.
+        </p>
+      </div>
+      <div id="search">
+        <input onChange={(e) => updateSearchValue(e.target.value)}></input>
+        <button onClick={() => onFetchGif(searchValue, weirdness)}>Get GIF</button>
+      </div>
+    </section>
+
+
+    <section id="current-section">
+      <div>{currentGif}</div>
+
+      <label htmlFor="weirdness-slider">Weirdness: {weirdness}</label>
+      <input type="range" value={weirdness} onChange={(e) => { changeWeirdness(e.target.value) }} className="custom-range" id="weirdness-slider" min="1" max="10"></input> {/*add onChange*/}
+
+      <button onClick={() => likeGif({ gifId, gifUrl, gifTitle, weirdness })} style={isLikeButtonHidden ? { visibility: 'hidden' } : null}>Like</button>
+    </section>
+
+
+    <section id="liked-section-home" className="liked-section">
+      <h2>Your Liked GIFs</h2>
+      <ul>
+        {likedGifs.map((gif, index) => (
+          <li key={gif.gifId}>
+            <p>{gif.gifTitle}</p>
+            <img src={gif.gifUrl} alt=''></img>
+          </li>
+        ))}
+      </ul>
+      <button onClick={() => calculateWeirdness(likedGifs)} style={isCalculateButtonHidden ? { visibility: 'hidden' } : null}>Calculate Weirdness</button>
+    </section>
+
+  </div>
+  )
+
+  const resultsPage = <div>
+    <section id="results-section">
+      <h2>Results</h2>
+      <p>You scored {totalWeirdnessScore}/10 on the weirdness scale!</p>
+    </section>
+
+    <section id="liked-section-results" className="liked-section">
+      <h2>Your Liked Gifs</h2>
+      <ul>
+        {likedGifs.map((gif, index) => (
+          <li key={gif.gifId}>
+            <p>{gif.gifTitle}</p>
+            <img src={gif.gifUrl} alt=''></img>
+            <p>Weirdness: {gif.weirdness}/10</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+
+
   return (
     <div>
       <section id='header-section'>
         <h1>Weirdness Calculator</h1>
       </section>
-
-      <section id='search-section'>
-        <div id="intro">
-          <p>Find out how weird you are by selecting the GIFs that make you laugh.
-            We'll show you the least weird ones to start, but you can move the slider to make them weirder.
-
-            When you find a GIF you like, press the Like button.
-            Once you like 5 GIFs, we'll show you how weird you are.
-        </p>
-        </div>
-        <div id="search">
-          <input onChange={(e) => updateSearchValue(e.target.value)}></input>
-          <button onClick={() => onFetchGif(searchValue, weirdness)}>Get GIF</button>
-        </div>
-      </section>
-
-
-      <section id="current-section">
-        <div>{currentGif}</div>
-
-        <label htmlFor="weirdness-slider">Weirdness: {weirdness}</label>
-        <input type="range" value={weirdness} onChange={(e) => { changeWeirdness(e.target.value) }} className="custom-range" id="weirdness-slider" min="1" max="10"></input> {/*add onChange*/}
-
-        <button onClick={() => likeGif({ gifId, gifUrl, weirdness })} style={isLikeButtonHidden ? { visibility: 'hidden' } : null}>Like</button>
-      </section>
-
-
-      <section id="liked-section">
-        <h2>Your Liked GIFs</h2>
-        <div id="liked-gifs">
-          <ul>
-            {likedGifs.map((gif, index) => (
-              <li key={gif.gifId}>
-                <img src={gif.gifUrl} alt=''></img>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <button onClick={() => calculateWeirdness(likedGifs)} style={isCalculateButtonHidden ? { visibility: 'hidden' } : null}>Calculate Weirdness</button>
-      </section>
-
+      {!totalWeirdnessScore ? homePage : resultsPage}
     </div>
+
   );
 }
 
