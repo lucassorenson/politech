@@ -25,12 +25,13 @@ const fetchGif = (searchTerm, weirdness) => {
                     }
                     dispatch(receiveGif(noGif))
                 } else {
-                    const data = {
+                    const gifData = {
                         gifId: result.id,
                         gifUrl: result.images.downsized_large.url,
-                        gifTitle: result.title.length > 0 ? result.title : 'No Title Available'
+                        gifTitle: result.title.length > 0 ? result.title : 'No Title Available',
+                        gifWeirdness: weirdness
                     }
-                    dispatch(receiveGif(data))
+                    dispatch(receiveGif(gifData))
                 }
             });
     }

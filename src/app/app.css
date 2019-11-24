@@ -58,7 +58,9 @@ img {
 }
 
 .liked-section li {
-    margin: 5px 0
+    margin: 5px 0;
+    max-width: 200px;
+    max-height: 200px;
 }
 
 .liked-section img {

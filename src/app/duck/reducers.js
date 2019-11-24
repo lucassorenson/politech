@@ -2,6 +2,7 @@ import { default as Types } from './types'
 
 const INITIAL_STATE = {
     loading: false,
+    gifData: {},
     searchValue: '',
     weirdness: 1,
     likedGifs: [],
@@ -28,12 +29,10 @@ const appReducer = (state=INITIAL_STATE, action) => {
         }
 
         case Types.RECEIVE_GIF: {
-            const { gifId, gifUrl, gifTitle } = action.gifData;
+            const gifData = action.gifData;
             return {
                 ...state,
-                gifId, 
-                gifUrl,
-                gifTitle,
+                gifData: { ...gifData },
                 loading: false
             }
         }
@@ -47,10 +46,10 @@ const appReducer = (state=INITIAL_STATE, action) => {
         }
 
         case Types.LIKE_GIF: {
-            const { gifId, gifUrl, gifTitle, weirdness } = action;
+            const { gifData } = action;
             return {
                 ...state,
-                likedGifs: [...state.likedGifs, {gifId: gifId, gifUrl: gifUrl, gifTitle: gifTitle, weirdness: weirdness}]
+                likedGifs: [...state.likedGifs, { ...gifData }]
             }
         }
 
@@ -58,7 +57,7 @@ const appReducer = (state=INITIAL_STATE, action) => {
             const { likedGifs } = action;
             return {
                 ...state,
-                totalWeirdnessScore: likedGifs.map(gif => gif.weirdness).reduce((sum, num) => sum + num) / likedGifs.length
+                totalWeirdnessScore: likedGifs.map(gif => gif.gifWeirdness).reduce((sum, num) => sum + num) / likedGifs.length
             }
         }
         case Types.START_OVER: {

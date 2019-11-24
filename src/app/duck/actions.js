@@ -12,11 +12,7 @@ const searchForGif = (searchTerm) => ({
 
 const receiveGif = (gifData) => ({
     type: types.RECEIVE_GIF,
-    gifData: {
-        gifId: gifData.gifId,
-        gifUrl: gifData.gifUrl,
-        gifTitle: gifData.gifTitle
-    }
+    gifData: { ...gifData }
 });
 
 const changeWeirdness = (weirdness) => ({
@@ -24,12 +20,9 @@ const changeWeirdness = (weirdness) => ({
     weirdness: parseInt(weirdness)
 })
 
-const likeGif = ({gifId, gifUrl, gifTitle, weirdness}) => ({
+const likeGif = (gifData) => ({
     type: types.LIKE_GIF,
-    gifId: gifId,
-    gifUrl: gifUrl,
-    gifTitle: gifTitle,
-    weirdness: weirdness
+    gifData: gifData
 })
 
 const calculateWeirdness = (likedGifs) => ({
