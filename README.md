@@ -11,6 +11,8 @@ Before starting this project, I had only used redux once. I learned it when I wa
 
 As you can see, I added react-router very late in the project. I did not fully understand the Redux file structure when I started, so I did not organize it very well. I hope that the final product reflects everything that I have learned about redux. I know that there is still a lot that could be done to improve this app.
 
+- Error states: I will be honest, I do not know a ton in this area, and I did not have time to research/learn.
+- Input validation: I am not sure what I should be validating. The Giphy API allows any search term as far as I could tell, but more research could be done on the subject.
 - Make the enter button submit the search
 - Split the ducks folder into each component folder
 - Style the app a little better
