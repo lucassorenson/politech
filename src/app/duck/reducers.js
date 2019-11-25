@@ -4,11 +4,11 @@ const INITIAL_STATE = {
     loading: false,
     gifData: {},
     searchValue: '',
-    weirdness: 1,
+    weirdness: 0,
     likedGifs: [],
 }
 
-const appReducer = (state=INITIAL_STATE, action) => {
+const homeReducer = (state=INITIAL_STATE, action) => {
     switch(action.type) {
 
         case Types.UPDATE_SEARCH_VALUE: {
@@ -41,7 +41,7 @@ const appReducer = (state=INITIAL_STATE, action) => {
             const { weirdness } = action;
             return {
                 ...state,
-                weirdness: weirdness
+                weirdness: parseInt(weirdness)
             }
         }
 
@@ -65,15 +65,18 @@ const appReducer = (state=INITIAL_STATE, action) => {
             const { likedGifs } = action;
             return {
                 ...state,
-                totalWeirdnessScore: likedGifs.map(gif => gif.gifWeirdness).reduce((sum, num) => sum + num) / likedGifs.length
+                totalWeirdnessScore: likedGifs.map(gif => gif.gifWeirdness).reduce((sum = 0, num) => sum + num) / likedGifs.length
             }
         }
+
         case Types.START_OVER: {
-            return { ...INITIAL_STATE }
+            return {
+                ...INITIAL_STATE
+            }
         }
 
         default: return state;
     }
 }
 
-export default appReducer
+export default homeReducer

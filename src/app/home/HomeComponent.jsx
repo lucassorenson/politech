@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import { Spinner } from 'react-bootstrap'
 
-function AppComponent({
+function HomeComponent({
   searchValue,
   updateSearchValue,
   weirdness,
@@ -12,9 +13,7 @@ function AppComponent({
   gifData,
   loading,
   onFetchGif,
-  calculateWeirdness,
-  totalWeirdnessScore,
-  startOver
+  calculateWeirdness
 }) {
   let currentGif = function () {
     if (!gifData.gifUrl) {
@@ -29,12 +28,14 @@ function AppComponent({
   let isLikeButtonHidden = function () {
     return !gifData.gifUrl || likedGifs.length >= 5 || likedGifs.filter(gif => gif.gifId === gifData.gifId || gif.gifSearchTerm === gifData.gifSearchTerm).length > 0
   }()
-
   let isCalculateButtonHidden = function () {
     return likedGifs.length < 5
   }()
 
-  const homePage = (<div>
+  return (<div>
+    <section id='header-section'>
+      <h1>Weirdness Calculator</h1>
+    </section>
 
     <section id='search-section'>
       <div id="intro">
@@ -56,7 +57,7 @@ function AppComponent({
       <div>{currentGif}</div>
 
       <label htmlFor="weirdness-slider">Weirdness: {weirdness}</label>
-      <input type="range" value={weirdness} onChange={(e) => { changeWeirdness(e.target.value) }} className="custom-range" id="weirdness-slider" min="1" max="10"></input> {/*add onChange*/}
+      <input type="range" value={weirdness} onChange={(e) => { changeWeirdness(e.target.value) }} className="custom-range" id="weirdness-slider" min="0" max="10"></input> {/*add onChange*/}
 
       <button onClick={() => likeGif({ gifData })} style={isLikeButtonHidden ? { visibility: 'hidden' } : null}>Like</button>
     </section>
@@ -73,46 +74,14 @@ function AppComponent({
           </li>
         ))}
       </ul>
-      <button onClick={() => calculateWeirdness(likedGifs)} style={isCalculateButtonHidden ? { visibility: 'hidden' } : null}>Calculate Weirdness</button>
+
+      <Link to='/results'>
+        <button onClick={() => calculateWeirdness(likedGifs)} style={isCalculateButtonHidden ? { visibility: 'hidden' } : null}>Calculate Weirdness</button>
+      </Link>
     </section>
 
   </div>
   )
-
-  const resultsPage = <div>
-    <section id="results-section">
-      <h2>Results</h2>
-      <p>You scored {totalWeirdnessScore}/10 on the weirdness scale!</p>
-    </section>
-
-    <section id="liked-section-results" className="liked-section">
-      <h2>Your Liked Gifs</h2>
-      <ul>
-        {likedGifs.map((gif, index) => (
-          <li key={gif.gifId}>
-            <p>{gif.gifTitle}</p>
-            <img src={gif.gifUrl} alt=''></img>
-            <p>Weirdness: {gif.gifWeirdness}/10</p>
-          </li>
-        ))}
-      </ul>
-    </section>
-
-    <section id="start-over-section">
-      <button onClick={startOver}>Start Over</button>
-    </section>
-  </div>
-
-
-  return (
-    <div>
-      <section id='header-section'>
-        <h1>Weirdness Calculator</h1>
-      </section>
-      {!totalWeirdnessScore ? homePage : resultsPage}
-    </div>
-
-  );
 }
 
-export default AppComponent;
+export default HomeComponent;
