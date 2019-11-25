@@ -46,6 +46,7 @@ const homeReducer = (state=INITIAL_STATE, action) => {
         }
 
         case Types.LIKE_GIF: {
+            document.getElementById('search-input').focus()
             const { gifData } = action;
             return {
                 ...state,

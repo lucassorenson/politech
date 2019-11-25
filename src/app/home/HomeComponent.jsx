@@ -47,7 +47,7 @@ function HomeComponent({
         </p>
       </div>
       <div id="search">
-        <input onChange={(e) => updateSearchValue(e.target.value)}></input>
+        <input id="search-input" onChange={(e) => updateSearchValue(e.target.value)}></input>
         <button onClick={() => onFetchGif(searchValue, weirdness)}>Get GIF</button>
       </div>
     </section>
