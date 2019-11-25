@@ -40,10 +40,10 @@ img {
     height: 90vh;
     float: right;
     margin-top: -25vh;
+    border: 1px gray solid;
 }
 
 .liked-section {
-    border: 1px gray solid;
     text-align: center;
     padding: 20px;
 }
@@ -66,4 +66,13 @@ img {
 .liked-section img {
     max-width: 150px;
     max-height: 150px;
+}
+
+#results-section {
+    text-align: center;
+    margin: 15px
+}
+
+#start-over-section {
+    text-align: center;
 }
