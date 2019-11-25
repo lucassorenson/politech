@@ -26,7 +26,7 @@ function AppComponent({
   }()
 
   let isLikeButtonHidden = function () {
-    return !gifData.gifUrl || likedGifs.length >= 5 || likedGifs.filter(gif => gif.gifId === gifData.gifId).length > 0
+    return !gifData.gifUrl || likedGifs.length >= 5 || likedGifs.filter(gif => gif.gifId === gifData.gifId || gif.gifSearchTerm === gifData.gifSearchTerm).length > 0
   }()
 
   let isCalculateButtonHidden = function () {
@@ -96,7 +96,7 @@ function AppComponent({
       </ul>
     </section>
 
-    <section>
+    <section id="start-over-section">
       <button onClick={startOver}>Start Over</button>
     </section>
   </div>

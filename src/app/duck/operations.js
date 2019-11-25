@@ -29,7 +29,8 @@ const fetchGif = (searchTerm, weirdness) => {
                         gifId: result.id,
                         gifUrl: result.images.downsized_large.url,
                         gifTitle: result.title.length > 0 ? result.title : 'No Title Available',
-                        gifWeirdness: weirdness
+                        gifWeirdness: weirdness,
+                        gifSearchTerm: searchTerm
                     }
                     dispatch(receiveGif(gifData))
                 }
