@@ -8,6 +8,7 @@ function AppComponent({
   changeWeirdness,
   likedGifs,
   likeGif,
+  unlikeGif,
   gifData,
   loading,
   onFetchGif,
@@ -67,6 +68,7 @@ function AppComponent({
         {likedGifs.map((gif, index) => (
           <li key={gif.gifId}>
             <p>{gif.gifTitle}</p>
+            <button onClick={() => unlikeGif(gif.gifId)}>x</button>
             <img src={gif.gifUrl} alt=''></img>
           </li>
         ))}

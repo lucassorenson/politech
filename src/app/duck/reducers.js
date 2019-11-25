@@ -53,6 +53,14 @@ const appReducer = (state=INITIAL_STATE, action) => {
             }
         }
 
+        case Types.UNLIKE_GIF: {
+            const { gifId } = action;
+            return {
+                ...state,
+                likedGifs: [...state.likedGifs.filter( gif => gif.gifId !== gifId)]
+            }
+        }
+
         case Types.CALCULATE_WEIRDNESS: {
             const { likedGifs } = action;
             return {

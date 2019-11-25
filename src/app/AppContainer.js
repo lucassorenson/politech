@@ -22,6 +22,7 @@ const mapDispatchToProps = (dispatch) => {
   const onFetchGif = (currentValue, weirdness) => dispatch(appOperations.fetchGif(currentValue, weirdness))
   const changeWeirdness = (weirdness) => dispatch(appOperations.changeWeirdness(weirdness))
   const likeGif = ({gifData}) => dispatch(appOperations.likeGif({ ...gifData }))
+  const unlikeGif = (gifId) => dispatch(appOperations.unlikeGif(gifId))
   const calculateWeirdness = (likedGifs) => dispatch(appOperations.calculateWeirdness(likedGifs))
   const startOver = () => dispatch(appOperations.startOver())
 
@@ -30,6 +31,7 @@ const mapDispatchToProps = (dispatch) => {
     updateSearchValue,
     changeWeirdness,
     likeGif,
+    unlikeGif,
     calculateWeirdness,
     startOver
   }

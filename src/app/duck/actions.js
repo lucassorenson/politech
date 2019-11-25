@@ -25,6 +25,11 @@ const likeGif = (gifData) => ({
     gifData: gifData
 })
 
+const unlikeGif = (gifId) => ({
+    type: types.UNLIKE_GIF,
+    gifId: gifId
+})
+
 const calculateWeirdness = (likedGifs) => ({
     type: types.CALCULATE_WEIRDNESS,
     likedGifs: likedGifs
@@ -40,6 +45,7 @@ export default {
     updateSearchValue,
     changeWeirdness,
     likeGif,
+    unlikeGif,
     calculateWeirdness,
     startOver
  }

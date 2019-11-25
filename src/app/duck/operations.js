@@ -4,6 +4,7 @@ const searchForGif = Creators.searchForGif;
 const receiveGif = Creators.receiveGif;
 const updateSearchValue = Creators.updateSearchValue;
 const likeGif = Creators.likeGif;
+const unlikeGif = Creators.unlikeGif;
 const changeWeirdness = Creators.changeWeirdness;
 const calculateWeirdness = Creators.calculateWeirdness;
 const startOver = Creators.startOver;
@@ -42,6 +43,7 @@ export default {
     fetchGif,
     updateSearchValue,
     likeGif,
+    unlikeGif,
     changeWeirdness,
     calculateWeirdness,
     startOver
